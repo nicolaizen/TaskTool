@@ -1,8 +1,12 @@
 #!/bin/bash
+
+printf "Oppdater pathene til mappestuktur og chrome før bruk"
+exit 1
+
 MY_PATH="$( cd "$(dirname "$0")" && pwd )"
 PREFAB="${MY_PATH}"'/prefab.md'
-TASK_DIR="${MY_PATH}"'/ITASADF/ITASADF-'$1
-TASK_FILE="${TASK_DIR}"'/ITASADF-'$1'.md'
+TASK_DIR="${MY_PATH}"'Plasserinen til saksmappen'$1
+TASK_FILE="${TASK_DIR}"'Plasserinen til saksmappen/JIRA prefix-'$1'.md'
 
 function validateInput() {
   if [ -z "$1" ]
@@ -35,8 +39,9 @@ function replaceVariabels() {
 }
 
 validateInput "$@"
-createDir "$@"
-createMarkDown "$@"
+createDir
+createMarkDown
 replaceVariabels "$@"
 
 subl "${TASK_FILE}"
+chrome ""$1
